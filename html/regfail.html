@@ -13,12 +13,13 @@
     <!-- /modal-header -->
     <form action="../php\register.php" method="POST">
     <div class="modal-body">
-        <h3>Thank you for registering!</h3>
-        
+        <h3>Registration failed</h3>
+        <p>Your username/password was already in use.</p>
+        <br>
     </div>
     <!-- /modal-body -->
     <div class="modal-footer">
-        <input class="btn btn-primary" type="submit" name="submit" value="Register" />
+        <button href="register-modal.html" class="btn btn-primary" data-toggle="modal" data-target="#regModal">Click here to try again</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
     <!-- /modal-footer --> </form>
