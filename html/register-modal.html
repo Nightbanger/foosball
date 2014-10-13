@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Foosball register</title>  
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Foosball register</title>
 </head>
 <body>
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                 <h4 class="modal-title">Foosball register</h4>
-            </div>			<!-- /modal-header -->
-            <div class="modal-body">
-                 <form action="php\register.php" method="POST">
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input id="username" name="username" class="form-control" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input id="password" name="password" class="form-control" type="password">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input id="email" name="email" class="form-control" type="email">
-                    </div>
-                </form>
-            </div>			<!-- /modal-body -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Register</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>			<!-- /modal-footer -->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Foosball register</h4>
+</div>
+<!-- /modal-header -->
+<form action="../php\register.php" method="POST">
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Username</label>
+            <input id="username" name="username" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input id="password" name="password" class="form-control" type="password">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input id="email" name="email" class="form-control" type="email">
+        </div>
+
+    </div>
+    <!-- /modal-body -->
+    <div class="modal-footer">
+        <input class="btn btn-primary" type="submit" name="submit" value="Register" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+    <!-- /modal-footer --> </form>
 </body>
 </html>
