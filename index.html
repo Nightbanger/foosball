@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>KEA - Foosball</title>
+    <title>Foosball</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="../css/stylish-portfolio.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -64,9 +64,26 @@
             <h1>KEA Foosball</h1>
             <h3>Claim the top of the highscore!</h3>
             <br>
-            <a href="#login" class="btn btn-light btn-lg">Login</a>
-            <a href="register.php" class="btn btn-dark btn-lg">Register</a>
-        </div>
+            <a href="html/login-modal.html" class="btn btn-light btn-lg" data-toggle="modal" data-target="#logModal" >Login</a>
+            <a href="html/register-modal.html" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#regModal" >Register</a>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="logModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div> <!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
+        
+    <!-- Register Modal -->
+    <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div> <!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
+        
     </header>
 
     <!-- Footer -->
@@ -96,10 +113,10 @@
     </footer>
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <script src="../js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script>
