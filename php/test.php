@@ -15,10 +15,8 @@ $em = $mysqli->real_escape_string($_POST['email']);
 /* execute prepared statement */
 $stmt->execute();
 
-printf("%d Row inserted.\n", $stmt->affected_rows);
 
-
-$query = "SELECT username, password FROM Users";
+$query = "SELECT username, password FROM Users WHERE username='NAM'";
 
 if ($stmt = $mysqli->prepare($query)) {
 
@@ -26,11 +24,14 @@ if ($stmt = $mysqli->prepare($query)) {
     $stmt->execute();
 
     /* bind result variables */
-    $stmt->bind_result($username, $password);
+    $stmt->bind_result($username);
 
     /* fetch values */
     while ($stmt->fetch()) {
-        printf("%s (%s)\n", $username, $password);
+        if (isset($username)) {
+            printf("%s \n", $username);
+            die('Nam found');
+        }
     }
 
     /* close statement */

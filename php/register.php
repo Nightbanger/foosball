@@ -13,13 +13,27 @@ if (!empty($_POST)) {
     }
 
 
+    $query = "SELECT username  FROM Users WHERE username = ?";
 
 
 
+    if ($stmt = $mysqli->prepare($query)) {
 
+        $stmt->bind_param('s', $_POST['username']);
+        /* execute statement */
+        $stmt->execute();
 
+        /* bind result variables */
+        $stmt->bind_result($username);
 
+        /* fetch values */    /* fetch values */
+        while ($stmt->fetch()) {
+            die('Username exists');
+        }
 
+        /* close statement */
+        $stmt->close();
+    }
 
 
     // Security measures
@@ -44,7 +58,6 @@ if (!empty($_POST)) {
     $stmt->execute();
 
     printf("%d Row inserted.\n", $stmt->affected_rows);
-
 
 
     header("Location: ../index.html");
