@@ -12,60 +12,15 @@ if (!empty($_POST)) {
         die("Invalid E-Mail Address");
     }
 
-    // Check if the username is already taken
-    $query = "
-            SELECT
-                1
-            FROM users
-            WHERE
-                username = :username
-        ";
-    $query_params = array(':username' => $_POST['username']);
-    try {
-        $stmt = $db->prepare($query);
-        $result = $stmt->execute($query_params);
-    } catch (PDOException $ex) {
-        die("Failed to run query: " . $ex->getMessage());
-    }
-    $row = $stmt->fetch();
-    if ($row) {
-        die("This username is already in use");
-    }
-    $query = "
-            SELECT
-                1
-            FROM users
-            WHERE
-                email = :email
-        ";
-    $query_params = array(
-        ':email' => $_POST['email']
-    );
-    try {
-        $stmt = $db->prepare($query);
-        $result = $stmt->execute($query_params);
-    } catch (PDOException $ex) {
-        die("Failed to run query: " . $ex->getMessage());
-    }
-    $row = $stmt->fetch();
-    if ($row) {
-        die("This email address is already registered");
-    }
 
-    // Add row to database
-    $query = "
-            INSERT INTO users (
-                username,
-                password,
-                salt,
-                email
-            ) VALUES (
-                :username,
-                :password,
-                :salt,
-                :email
-            )
-        ";
+
+
+
+
+
+
+
+
 
     // Security measures
     $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
@@ -73,18 +28,25 @@ if (!empty($_POST)) {
     for ($round = 0; $round < 65536; $round++) {
         $password = hash('sha256', $password . $salt);
     }
-    $query_params = array(
-        ':username' => $_POST['username'],
-        ':password' => $password,
-        ':salt' => $salt,
-        ':email' => $_POST['email']
-    );
-    try {
-        $stmt = $db->prepare($query);
-        $result = $stmt->execute($query_params);
-    } catch (PDOException $ex) {
-        die("Failed to run query: " . $ex->getMessage());
-    }
+
+
+
+    $stmt = $mysqli->prepare("INSERT INTO users (username,password,salt,email) VALUES (?,?,?,?)");
+
+    $stmt->bind_param('ssss', $un, $pw, $sa, $em);
+
+    $un = $mysqli->real_escape_string($_POST['username']);
+    $pw = $mysqli->real_escape_string($password);
+    $sa = $mysqli->real_escape_string($salt);
+    $em = $mysqli->real_escape_string($_POST['email']);
+
+    /* execute prepared statement */
+    $stmt->execute();
+
+    printf("%d Row inserted.\n", $stmt->affected_rows);
+
+
+
     header("Location: ../index.html");
     die("Redirecting to index.php");
 }

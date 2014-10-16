@@ -1,7 +1,7 @@
 <?php
 require("config.php");
 
-if (!empty($_POST)) 
+if (!empty($_POST))
     {
         // Ensure that the user fills out fields
         if (empty($_POST['username'])) {
@@ -11,30 +11,30 @@ if (!empty($_POST))
             die("Please enter a password.");
         }
 
-        $query = "SELECT 1 FROM users WHERE USERNAME = :username";
+        $query = "SELECT 1 FROM users WHERE USERNAME = :username AND PASSWORD = :password";
 
-        $query_params = array(':username' => $_POST['username'] );
+        $query_params = array(':username' => $_POST['username'], ':password' => $_POST['password'] );
         try 
         {
             $stmt = $db->prepare($query);
             $result = $stmt->execute($query_params);
+
+            $stmt->bind_result($name, $code, $email);
+
+            while ($stmt->fetch()) {
+                printf ("%s (%s) %s\n", $name, $code, $email);
+            }
         }
-
-
         catch (PDOException $ex) 
         {
             die("Failed to run query: " . $ex->getMessage());
         }
 
-        while($row = mysqli_fetch_array($result)) {
-            echo $row['username'] . " " . $row['password']. " " . $row['salt'];
-            echo "<br>";
-        }
-
-
         $row = $stmt->fetch();
+
         if ($row) {
             echo("WOHOO");
+
         }
         else
         {
