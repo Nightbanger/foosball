@@ -15,8 +15,6 @@ if (!empty($_POST)) {
 
     $query = "SELECT username  FROM Users WHERE username = ?";
 
-
-
     if ($stmt = $mysqli->prepare($query)) {
 
         $stmt->bind_param('s', $_POST['username']);
@@ -28,12 +26,33 @@ if (!empty($_POST)) {
 
         /* fetch values */    /* fetch values */
         while ($stmt->fetch()) {
-            die('Username exists');
+            die('Username already exists');
         }
 
         /* close statement */
         $stmt->close();
     }
+
+    $query = "SELECT EMAIL  FROM Users WHERE EMAIL = ?";
+
+    if ($stmt = $mysqli->prepare($query)) {
+
+        $stmt->bind_param('s', $_POST['email']);
+        /* execute statement */
+        $stmt->execute();
+
+        /* bind result variables */
+        $stmt->bind_result($email);
+
+        /* fetch values */    /* fetch values */
+        while ($stmt->fetch()) {
+            die('Email already exists');
+        }
+
+        /* close statement */
+        $stmt->close();
+    }
+
 
 
     // Security measures
