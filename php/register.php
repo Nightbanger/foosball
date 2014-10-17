@@ -16,7 +16,6 @@ if (!empty($_POST)) {
     $query = "SELECT username  FROM Users WHERE username = ?";
 
 
-
     if ($stmt = $mysqli->prepare($query)) {
 
         $stmt->bind_param('s', $_POST['username']);
@@ -42,7 +41,6 @@ if (!empty($_POST)) {
     for ($round = 0; $round < 65536; $round++) {
         $password = hash('sha256', $password . $salt);
     }
-
 
 
     $stmt = $mysqli->prepare("INSERT INTO users (username,password,salt,email) VALUES (?,?,?,?)");
