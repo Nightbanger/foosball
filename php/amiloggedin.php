@@ -1,0 +1,1 @@
+<?php  session_start(); if(isset($_SESSION['Title'])) echo $_SESSION['Title']; else echo 'PHP Sadness Happened'?>

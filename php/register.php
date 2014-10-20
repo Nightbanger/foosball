@@ -58,7 +58,7 @@ if (!empty($_POST)) {
     printf("%d Row inserted.\n", $stmt->affected_rows);
 
 
-    header("Location: ../index.html");
+    header("Location: ../index.php");
     die("Redirecting to index.php");
 }
 ?>

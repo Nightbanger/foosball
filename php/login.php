@@ -30,13 +30,16 @@ if (!empty($_POST)) {
         }
 
 
-    } else die('Username fetch failed');
+    } else {
+        $_SESSION['loginfailure'] = true;
+    }
 
 
-    $query = "SELECT salt, password FROM users WHERE USERNAME = '$username'";
+    $query = "SELECT salt, password FROM users WHERE USERNAME = ?";
 
 
     if ($stmt = $mysqli->prepare($query)) {
+        $stmt->bind_param('s', $username);
 
         $stmt->execute();
 
@@ -55,10 +58,15 @@ if (!empty($_POST)) {
 
 
     $stmt->close();
-    if ($password == $dbpassword) {$_SESSION['username'] = $username; echo 'You are now logged in';}
-    else {
-        session_destroy();
-        header("Location: ../index.html");
+    if ($password == $dbpassword) {
+        $_SESSION['username'] = $username;
+        echo 'You are now logged in';
+        $_SESSION['Title'] = 'Welcome, ' . $username;
+        unset($_SESSION['loginfailure']);
+        header("Location: ../index.php");
+    } else {
+        $_SESSION['loginfailure'] = true;
+        header("Location: ../index.php");
 
     }
 }

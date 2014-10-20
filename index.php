@@ -1,4 +1,4 @@
-<?php /*session_start();*/ ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,9 +40,9 @@
     <ul class="sidebar-nav">
         <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
         <li class="sidebar-brand">
-            <a href="#top">Navbar</a>
+            <a href="#top"><?php if (isset($_SESSION['username'])) echo 'Welcome, '.$_SESSION['username']; else echo 'Not logged in' ?></a>
         </li>
-        <li class="active">
+        <li >
             <a href="#top">Home</a>
         </li>
         <li>
@@ -52,14 +52,15 @@
             <a href="#services">Services</a>
         </li>
         <li>
-            <a href="#portfolio">Portfolio</a>
+            <a href="php/amiloggedin.php">Am I logged in?</a>
         </li>
         <li>
-            <a href="#contact">Contact</a>
+            <a href="php/logout.php">Logout</a>
         </li>
     </ul>
 </nav>
 
+<!-- Header -->
 <!-- Header -->
 <header id="top" class="header">
     <div class="text-vertical-center">
@@ -67,7 +68,8 @@
 
         <h3>Claim the top of the highscore!</h3>
         <br>
-        <a href="html/login-modal.html"  id = "mymom" class="btn btn-light btn-lg" data-toggle="modal"
+        <a href="<?php if (isset($_SESSION['loginfailure'])) echo 'html/loginfail-modal.html'; else echo 'html/login-modal.html'; ?>"
+           id="mymom" class="btn btn-light btn-lg" data-toggle="modal"
            data-target="#logModal">Login</a>
         <a href="html/register-modal.html" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#regModal">Register</a>
     </div>
@@ -164,7 +166,7 @@
 </script>
 <script type='text/javascript'>
     var myLink = document.getElementById('mymom');
-    myLink.click();
+    <?php if (isset($_SESSION['loginfailure'])) echo 'myLink.click();';?>
 </script>
 
 
