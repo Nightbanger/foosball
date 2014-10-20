@@ -55,7 +55,7 @@ if (!empty($_POST)) {
 
 
     $stmt->close();
-    if ($password == $dbpassword) $_SESSION['username'] = $username;
+    if ($password == $dbpassword) {$_SESSION['username'] = $username; echo 'You are now logged in';}
     else {
         session_destroy();
         header("Location: ../index.html");
