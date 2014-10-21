@@ -63,7 +63,7 @@ if (!empty($_POST)) {
         echo 'You are now logged in';
         $_SESSION['Title'] = 'Welcome, ' . $username;
         unset($_SESSION['loginfailure']);
-        header("Location: ../index.php");
+        header("Location: mymatches.php");
     } else {
         $_SESSION['loginfailure'] = true;
         header("Location: ../index.php");
