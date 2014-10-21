@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("html/headcontent.html")?>
+<?php include("html/headcontent.html") ?>
 
 <body>
 
-<!-- Navigation --><?php include("html/navigation.html")?>
+<!-- Navigation --><?php include("html/navigation.html") ?>
 
 <!-- Header -->
 <!-- Header -->
